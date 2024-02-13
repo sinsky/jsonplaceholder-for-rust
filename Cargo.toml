@@ -1,0 +1,17 @@
+[package]
+name = "jsonplaceholder-for-rust"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+http = "1.0.0"
+reqwest = { version = "0.11.24", features = ["json"] }
+serde = { version = "1.0.196", features = ["derive"]}
+tokio = { version = "1.36.0", features = ["full"] }
+tokio-macros = "2.2.0"
+
+[[bin]]
+name = "jsonplaceholder-for-rust"
+path = "./src/main.rs"
