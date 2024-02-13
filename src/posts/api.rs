@@ -39,6 +39,15 @@ mod tests {
         assert_eq!(post.id, id);
     }
     #[tokio::test]
+    async fn test_get_post_empty() {
+        // Arrange
+        let id = 10000;
+        // Act
+        let result = get_post(id).await;
+        // Assert
+        assert!(result.is_err());
+    }
+    #[tokio::test]
     async fn test_get_posts() {
         // Act
         let result = get_posts().await;

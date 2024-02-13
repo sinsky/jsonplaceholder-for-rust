@@ -39,6 +39,15 @@ mod tests {
         assert_eq!(todo.id, id);
     }
     #[tokio::test]
+    async fn test_get_todo_empty() {
+        // Arrange
+        let id = 10000;
+        // Act
+        let result = get_todo(id).await;
+        // Assert
+        assert!(result.is_err());
+    }
+    #[tokio::test]
     async fn test_get_todos() {
         // Act
         let result = get_todos().await;
