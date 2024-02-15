@@ -66,14 +66,14 @@ pub async fn get_todo(id: u32) -> Result<Todo, Box<dyn std::error::Error>> {
 }
 
 /// Todo項目のリストを取得します。
-/// # 戻り値
+/// # Returns
 /// * `Result<Vec<Todo>, Box<dyn std::error::Error>>` - Todo項目のリストを返します。
 /// * `Box<dyn std::error::Error>` - エラーを返します。
-/// # 例外
+/// # Errors
 /// * `std::error::Error` - エラーを返します。
-/// # 詳細
+/// # Details
 /// この関数は、Todo項目のリストを取得します。
-/// ## 例
+/// ## Example
 /// ```rust
 /// use todos::api::get_todos;
 /// async {
@@ -82,9 +82,9 @@ pub async fn get_todo(id: u32) -> Result<Todo, Box<dyn std::error::Error>> {
 ///     assert_eq!(todos.len(), 200);
 /// };
 /// ```
-/// # 例外
+/// # Errors
 /// この関数は、エラーを返します。
-/// ## 例
+/// ## Example
 /// ```rust
 /// use todos::api::get_todos;
 /// async {
