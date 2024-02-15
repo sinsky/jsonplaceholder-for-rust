@@ -2,7 +2,6 @@ use serde::Deserialize;
 
 /// jsonplaceholderのtodo構造
 #[derive(Debug, Deserialize)]
-
 pub struct Todo {
     /// * `u32` - Todo項目のID
     #[serde(rename = "userId")]
@@ -39,6 +38,12 @@ const BASE_URL: &str = "https://jsonplaceholder.typicode.com";
 /// この関数は、エラーを返します。
 /// ## 例
 /// ```rust
+/// use todos::api::get_todo;
+/// async {
+///     let todo = get_todo(10000).await;
+///     assert!(todo.is_err());
+/// };
+/// ```
 /// use todos::api::get_todo;
 /// async {
 ///     let todo = get_todo(10000).await;
