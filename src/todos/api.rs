@@ -55,9 +55,6 @@ const BASE_URL: &str = "https://jsonplaceholder.typicode.com";
 /// * `Box<dyn std::error::Error>` - エラーを返します.
 /// # Details
 pub async fn get_todo(id: u32) -> Result<Todo, Box<dyn std::error::Error>> {
-    #[cfg(test)]
-    let base_url = &format!("{}", server_url());
-    #[cfg(not(test))]
     let base_url = BASE_URL;
     let url = format!("{}/todos/{}", base_url, id);
     let response = reqwest::get(&url).await?.json::<Todo>().await?;
