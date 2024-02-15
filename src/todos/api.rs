@@ -47,6 +47,13 @@ const BASE_URL: &str = "https://jsonplaceholder.typicode.com";
 ///     assert!(todo.is_err());
 /// };
 /// ```
+/// 指定されたIDを持つTodo項目を取得します。
+/// # Arguments
+/// * `id` - Todo項目のID
+/// # Returns
+/// * `Result<Todo, Box<dyn std::error::Error>>` - Todo項目を返します。
+/// * `Box<dyn std::error::Error>` - エラーを返します.
+/// # Details
 pub async fn get_todo(id: u32) -> Result<Todo, Box<dyn std::error::Error>> {
     #[cfg(test)]
     let base_url = &format!("{}", server_url());
