@@ -119,7 +119,7 @@ mod tests {
         assert!(result.is_err());
     }
     #[tokio::test]
-    async fn test_get_todos() {
+    async fn test_get_todos_network_error() {
         // Act
         let result = get_todos().await;
         // Assert
