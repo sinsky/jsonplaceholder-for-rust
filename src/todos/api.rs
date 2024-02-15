@@ -20,16 +20,14 @@ pub struct Todo {
 const BASE_URL: &str = "https://jsonplaceholder.typicode.com";
 
 /// 指定されたIDを持つTodo項目を取得します。
-/// # 引数
+/// # Arguments
 /// * `id` - Todo項目のID
-/// # 戻り値
+/// # Returns
 /// * `Result<Todo, Box<dyn std::error::Error>>` - Todo項目を返します。
-/// * `Box<dyn std::error::Error>` - エラーを返します。
-/// # 例外
-/// * `std::error::Error` - エラーを返します。
-/// # 詳細
+/// * `Box<dyn std::error::Error>` - エラーを返します.
+/// # Details
 /// この関数は、指定されたIDを持つTodo項目を取得します。
-/// ## 例
+/// ## Example
 /// ```rust
 /// use todos::api::get_todo;
 /// async {
@@ -37,10 +35,16 @@ const BASE_URL: &str = "https://jsonplaceholder.typicode.com";
 ///     assert_eq!(todo.id, 1);
 /// };
 /// ```
-/// # 例外
+/// # Errors
 /// この関数は、エラーを返します。
-/// ## 例
+/// ## Example
 /// ```rust
+/// use todos::api::get_todo;
+/// async {
+///     let todo = get_todo(10000).await;
+///     assert!(todo.is_err());
+/// };
+/// ```
 /// use todos::api::get_todo;
 /// async {
 ///     let todo = get_todo(10000).await;
