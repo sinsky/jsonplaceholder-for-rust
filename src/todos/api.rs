@@ -161,6 +161,7 @@ use mockito::{mock, server_url};
     }
 
     #[tokio::test]
+    /// This function tests the behavior of get_todos() when an unexpected response is received.
     async fn test_get_todos_unexpected_response() {
         let _m = mock("GET", "/todos")
             .with_status(200)
