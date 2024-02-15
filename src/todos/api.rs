@@ -93,7 +93,7 @@ pub async fn get_todos() -> Result<Vec<Todo>, Box<dyn std::error::Error>> {
     Ok(response)
 }
 
-#[cfg(test)]
+/// Module containing tests for the todos API.
 mod tests {
     use super::*;
     #[tokio::test]
