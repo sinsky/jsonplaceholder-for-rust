@@ -46,7 +46,11 @@ const BASE_URL: &str = "https://jsonplaceholder.typicode.com";
 /// };
 /// ```
 pub async fn get_todo(id: u32) -> Result<Todo, Box<dyn std::error::Error>> {
-    let url = format!("{}/todos/{}", BASE_URL, id);
+    #[cfg(test)]
+    let base_url = &format!("{}", server_url());
+    #[cfg(not(test))]
+    let base_url = BASE_URL;
+    let url = format!("{}/todos/{}", base_url, id);
     let response = reqwest::get(&url).await?.json::<Todo>().await?;
     Ok(response)
 }
@@ -118,3 +122,45 @@ mod tests {
         assert_eq!(todos.len(), 200);
     }
 }
+use mockito::{mock, server_url};
+    #[tokio::test]
+    async fn test_get_todo_network_error() {
+        let _m = mock("GET", "/todos/1")
+            .with_status(500)
+            .create();
+
+        let result = get_todo(1).await;
+        assert!(result.is_err());
+    }
+
+    #[tokio::test]
+    async fn test_get_todo_unexpected_response() {
+        let _m = mock("GET", "/todos/1")
+            .with_status(200)
+            .with_body("unexpected response format")
+            .create();
+
+        let result = get_todo(1).await;
+        assert!(result.is_err());
+    }
+
+    #[tokio::test]
+    async fn test_get_todos_network_error() {
+        let _m = mock("GET", "/todos")
+            .with_status(500)
+            .create();
+
+        let result = get_todos().await;
+        assert!(result.is_err());
+    }
+
+    #[tokio::test]
+    async fn test_get_todos_unexpected_response() {
+        let _m = mock("GET", "/todos")
+            .with_status(200)
+            .with_body("unexpected response format")
+            .create();
+
+        let result = get_todos().await;
+        assert!(result.is_err());
+    }
