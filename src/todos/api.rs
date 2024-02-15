@@ -87,6 +87,8 @@ pub async fn get_todo(id: u32) -> Result<Todo, Box<dyn std::error::Error>> {
 ///     assert!(todos.is_err());
 /// };
 /// ```
+/// # 詳細
+/// この関数は、予期しないレスポンスが返された場合のテストを行います。
 pub async fn get_todos() -> Result<Vec<Todo>, Box<dyn std::error::Error>> {
     let url = format!("{}/todos", BASE_URL);
     let response = reqwest::get(url).await?.json::<Vec<Todo>>().await?;
@@ -137,7 +139,6 @@ use mockito::{mock, server_url};
         let result = get_todo(1).await;
         assert!(result.is_err());
     }
-
     #[tokio::test]
     async fn test_get_todo_unexpected_response() {
         let _m = mock("GET", "/todos/1")
